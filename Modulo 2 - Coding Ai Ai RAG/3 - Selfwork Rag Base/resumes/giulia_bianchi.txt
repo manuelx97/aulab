@@ -1,0 +1,12 @@
+### Giulia Bianchi
+Email: giulia.bianchi@example.com
+Telefono: +39 333 444 5555
+
+### Profilo
+Cybersecurity analyst con esperienza nella protezione di applicazioni web, hardening dei sistemi e monitoraggio delle vulnerabilita'.
+
+### Esperienze
+Ha lavorato su assessment di sicurezza, configurazioni firewall, analisi dei log e procedure di incident response per aziende del settore finanziario.
+
+### Competenze
+Sicurezza web, vulnerability assessment, firewall, SIEM, Linux hardening, certificazione CEH.

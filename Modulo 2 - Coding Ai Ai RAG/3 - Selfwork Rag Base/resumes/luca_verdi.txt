@@ -1,0 +1,12 @@
+### Luca Verdi
+Email: luca.verdi@example.com
+Telefono: +39 333 777 8888
+
+### Profilo
+Sviluppatore web full stack specializzato nella realizzazione di siti, dashboard e applicazioni gestionali per piccole e medie imprese.
+
+### Esperienze
+Ha sviluppato applicazioni Python, API REST, interfacce React e integrazioni con database relazionali per progetti e-commerce e CRM.
+
+### Competenze
+Python, JavaScript, React, API REST, SQL, Docker, sviluppo web.
