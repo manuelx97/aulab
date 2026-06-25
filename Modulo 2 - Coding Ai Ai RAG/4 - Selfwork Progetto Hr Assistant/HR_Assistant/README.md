@@ -46,5 +46,11 @@ ollama run llama3.2
 ## Avvio
 
 ```bash
-poetry run chainlit run hr_assistant/__init__.py -w
+poetry run chainlit run app.py -w
+```
+
+Se usi la venv classica:
+
+```bash
+chainlit run app.py -w
 ```
