@@ -49,17 +49,60 @@ class LLMHelper:
         return response["message"]["content"]
 
     @staticmethod
-    def create_prompt(context, question):
+    def classify_intent(user_question):
+        response = ollama.chat(
+            model=Config.OLLAMA_MODEL,
+            messages=[
+                {
+                    "role": "user",
+                    "content": (
+                        "Classifica la richiesta dell'utente in una sola categoria. "
+                        "Rispondi esclusivamente con search_cv se l'utente sta cercando "
+                        "un candidato con determinate competenze. Rispondi esclusivamente "
+                        "con info_cv se l'utente sta chiedendo informazioni su un candidato "
+                        "o curriculum gia' individuato nella conversazione. "
+                        f"Richiesta: {user_question}"
+                    ),
+                }
+            ],
+        )
+        intent = response["message"]["content"].strip().lower()
+
+        if "info_cv" in intent:
+            return "info_cv"
+
+        return "search_cv"
+
+    @staticmethod
+    def create_prompt(context, question, candidate_info=None, intent="search_cv"):
         return f"""
-            Dato il seguente contesto:
+            Sei un assistente esperto nella selezione del personale.
+
+            Contesto disponibile:
             [[[
             {context}
             ]]].
-            Rispondi alla domanda dell'utente: [[[ {question} ]]].
-            Spiega che nel file individuato c'e' il profilo piu' adatto.
-            Argomenta la scelta utilizzando il contenuto del testo individuato nel contesto.
-            Se non trovi corrispondenza in nessun cv non inventare.
-            Alla fine crea una sezione per i contatti del candidato indicando il nome,
-            la sua email e il numero di telefono, se presenti nel contesto.
-            Dopo la sezione dei contatti indica il nome del file del cv.
+
+            Informazioni iniziali del CV:
+            [[[
+            {candidate_info or "Non disponibili"}
+            ]]]
+
+            Domanda dell'utente:
+            [[[ {question} ]]]
+
+            Intento classificato: {intent}
+
+            Se l'intento e' search_cv:
+            - spiega che nel file individuato c'e' il profilo piu' adatto;
+            - argomenta la scelta usando competenze ed esperienze rilevanti;
+            - alla fine crea una sezione per i contatti del candidato;
+            - dopo i contatti indica il nome del file del cv.
+
+            Se l'intento e' info_cv:
+            - rispondi solo alla domanda specifica sul CV gia' individuato;
+            - evita dettagli non richiesti;
+            - se l'informazione non e' nel contesto, dichiaralo chiaramente.
+
+            Scrivi in italiano corretto e non inventare informazioni.
         """

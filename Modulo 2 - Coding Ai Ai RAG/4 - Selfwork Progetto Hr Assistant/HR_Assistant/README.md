@@ -23,6 +23,8 @@ In questo avanzamento il progetto contiene una app Chainlit con una versione RAG
 - espone i parametri del semantic chunking nella configurazione del progetto.
 - supporta provider di embedding intercambiabili: OpenAI, SentenceTransformer
   locale oppure Ollama.
+- classifica l'intento dell'utente per distinguere tra ricerca di un nuovo CV
+  e richiesta di informazioni sul CV gia' individuato.
 
 La logica e' divisa in:
 
