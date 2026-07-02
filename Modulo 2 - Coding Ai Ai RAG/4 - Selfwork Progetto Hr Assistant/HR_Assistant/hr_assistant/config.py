@@ -11,6 +11,7 @@ class Config:
     PERSISTENT_DIR = BASE_DIR / "data" / "chromadb"
 
     EMBEDDING_MODEL = "text-embedding-3-small"
+    CHUNKING_VERSION = "semantic-v1"
     OLLAMA_MODEL = "llama3.2"
 
     load_dotenv(BASE_DIR / ".env")

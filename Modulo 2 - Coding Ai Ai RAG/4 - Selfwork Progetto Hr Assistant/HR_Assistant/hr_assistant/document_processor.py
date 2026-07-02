@@ -1,6 +1,7 @@
 from hashlib import md5, sha1
 
 from hr_assistant.config import Config
+from hr_assistant.semantic_chunking import SemanticChunking
 
 
 class DocumentProcessor:
@@ -16,8 +17,9 @@ class DocumentProcessor:
 
     @staticmethod
     def get_document_metadata(file_path):
+        file_hash = DocumentProcessor.get_file_hash(file_path)
         return {
-            "hash": DocumentProcessor.get_file_hash(file_path),
+            "hash": f"{file_hash}:{Config.CHUNKING_VERSION}",
             "last_modified": file_path.stat().st_mtime,
             "source": file_path.name,
         }
@@ -30,11 +32,7 @@ class DocumentProcessor:
         metadata = DocumentProcessor.get_document_metadata(file_path)
 
         text = file_path.read_text(encoding="utf-8")
-        chunks = [
-            chunk.strip()
-            for chunk in text.replace("\n", ".").split("### ")
-            if chunk.strip()
-        ]
+        chunks = SemanticChunking().chunk_text(text)
 
         for index, chunk in enumerate(chunks):
             documents.append(chunk)

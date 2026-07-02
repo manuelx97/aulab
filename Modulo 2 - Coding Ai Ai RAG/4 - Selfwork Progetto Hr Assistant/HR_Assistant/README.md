@@ -18,6 +18,8 @@ In questo avanzamento il progetto contiene una app Chainlit con una versione RAG
   reindicizzare manualmente i curriculum.
 - include le informazioni di contatto del candidato nel contesto, evitando una
   chiamata aggiuntiva al modello solo per estrarre il nome.
+- usa semantic chunking per dividere i CV in frammenti coerenti rispetto al
+  significato del testo.
 
 La logica e' divisa in:
 
