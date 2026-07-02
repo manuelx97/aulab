@@ -23,7 +23,24 @@ def get_database():
 
 
 @cl.on_chat_start
-def on_chat_start():
+async def on_chat_start():
+    actions = [
+        cl.Action(
+            name="db_stats",
+            icon="database",
+            payload={"value": "db_stats"},
+            label="Statistiche Database",
+        ),
+        cl.Action(
+            name="db_reindex",
+            icon="refresh-cw",
+            payload={"value": "db_reindex"},
+            label="Reindex Database",
+        ),
+    ]
+
+    await cl.Message(content="Informazioni del sistema:", actions=actions).send()
+
     cl.user_session.set(
         "messages",
         [
@@ -40,26 +57,45 @@ def on_chat_start():
     )
 
 
+@cl.action_callback("db_stats")
+async def on_db_stats(action: cl.Action):
+    database = get_database()
+    db_info = database.get_stats()
+    response = LLMHelper.get_db_stats(db_info)
+    await cl.Message(content=response).send()
+
+
+@cl.action_callback("db_reindex")
+async def on_db_reindex(action: cl.Action):
+    database = get_database()
+    added, updated, removed = DocumentProcessor.process_documents(database)
+    message = (
+        "DB reindicizzato con successo. "
+        f"Document sync complete: {added} added, {updated} updated, {removed} removed"
+    )
+    await cl.Message(content=message).send()
+
+
 @cl.on_message
 async def handle_message(message: cl.Message):
     user_question = message.content
 
     try:
         database = get_database()
-        results = database.query(user_question)
+        results = database.query(user_question, n_results=3)
 
         filename = results["metadatas"][0][0]["source"]
-        candidate_intro = DocumentProcessor.read_first_lines(
+        candidate_info = DocumentProcessor.read_first_lines(
             Config.DOCUMENTS_DIR / filename,
-            limit=100,
+            limit=10,
         )
-        candidate_name = LLMHelper.get_candidate_name(candidate_intro)
 
         context = (
             f"CONTESTO: nome file {filename}; "
-            f"paragrafo piu' significativo: {results['documents'][0][0]}"
+            f"paragrafo piu' significativo: {results['documents'][0][0]}; "
+            f"informazioni del candidato: {candidate_info}"
         )
-        prompt = LLMHelper.create_prompt(context, user_question, candidate_name)
+        prompt = LLMHelper.create_prompt(context, user_question)
 
         messages = cl.user_session.get("messages", [])
         messages.append({"role": "user", "content": prompt})

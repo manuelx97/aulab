@@ -31,7 +31,25 @@ class LLMHelper:
         return response["message"]["content"]
 
     @staticmethod
-    def create_prompt(context, question, candidate_name):
+    def get_db_stats(context):
+        response = ollama.chat(
+            model=Config.OLLAMA_MODEL,
+            messages=[
+                {
+                    "role": "user",
+                    "content": (
+                        "Descrivi in modo sintetico e chiaro le statistiche "
+                        "del database dei frammenti indicizzati da questo sistema. "
+                        f"Ecco le informazioni disponibili: {context}"
+                    ),
+                }
+            ],
+        )
+
+        return response["message"]["content"]
+
+    @staticmethod
+    def create_prompt(context, question):
         return f"""
             Dato il seguente contesto:
             [[[
@@ -39,8 +57,9 @@ class LLMHelper:
             ]]].
             Rispondi alla domanda dell'utente: [[[ {question} ]]].
             Spiega che nel file individuato c'e' il profilo piu' adatto.
-            Assicurati di nominare il nome del file.
-            Assicurati di indicare il nome del candidato: [[[ {candidate_name} ]]].
             Argomenta la scelta utilizzando il contenuto del testo individuato nel contesto.
             Se non trovi corrispondenza in nessun cv non inventare.
+            Alla fine crea una sezione per i contatti del candidato indicando il nome,
+            la sua email e il numero di telefono, se presenti nel contesto.
+            Dopo la sezione dei contatti indica il nome del file del cv.
         """
