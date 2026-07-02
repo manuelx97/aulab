@@ -1,16 +1,14 @@
-import re
 from math import sqrt
+import re
 
-from openai import OpenAI
-
-from hr_assistant.config import Config
+from hr_assistant.custom_embedding import CustomEmbeddingFunction
 
 
 class SemanticChunking:
     def __init__(self, breakpoint_percentile=95, buffer_size=1):
         self.breakpoint_percentile = breakpoint_percentile
         self.buffer_size = buffer_size
-        self.client = OpenAI(api_key=Config.require_openai_api_key())
+        self.embedding_function = CustomEmbeddingFunction()
 
     def chunk_text(self, text):
         sentences = self._process_sentences(text)
@@ -60,11 +58,9 @@ class SemanticChunking:
         return sentences
 
     def _embed_sentences(self, sentences):
-        response = self.client.embeddings.create(
-            model=Config.EMBEDDING_MODEL,
-            input=[sentence["combined_sentence"] for sentence in sentences],
+        return self.embedding_function(
+            [sentence["combined_sentence"] for sentence in sentences]
         )
-        return [item.embedding for item in response.data]
 
     def _calculate_distances(self, embeddings):
         return [

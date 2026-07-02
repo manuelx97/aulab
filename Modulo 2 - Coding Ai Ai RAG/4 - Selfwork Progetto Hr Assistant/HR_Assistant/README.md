@@ -21,6 +21,8 @@ In questo avanzamento il progetto contiene una app Chainlit con una versione RAG
 - usa semantic chunking per dividere i CV in frammenti coerenti rispetto al
   significato del testo.
 - espone i parametri del semantic chunking nella configurazione del progetto.
+- supporta provider di embedding intercambiabili: OpenAI, SentenceTransformer
+  locale oppure Ollama.
 
 La logica e' divisa in:
 
@@ -45,6 +47,27 @@ OPENAI_API_KEY="la-tua-api-key"
 Il file deve trovarsi nella root del progetto `HR_Assistant`.
 
 Il database Chroma viene creato in `data/chromadb`, cartella ignorata da Git.
+
+Provider embedding opzionali:
+
+```bash
+EMBEDDING_PROVIDER="openai"
+EMBEDDING_MODEL="text-embedding-3-small"
+```
+
+Per usare SentenceTransformer locale:
+
+```bash
+EMBEDDING_PROVIDER="local"
+EMBEDDING_MODEL="all-mpnet-base-v2"
+```
+
+Per usare embedding Ollama:
+
+```bash
+EMBEDDING_PROVIDER="ollama"
+OLLAMA_EMBEDDING_MODEL="nomic-embed-text"
+```
 
 Avvia Ollama e scarica il modello usato dalla chat:
 

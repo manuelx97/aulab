@@ -1,22 +1,19 @@
 import chromadb
-from chromadb.utils import embedding_functions
 
 from hr_assistant.config import Config
+from hr_assistant.custom_embedding import CustomEmbeddingFunction
 
 
 class Database:
     def __init__(self):
         Config.PERSISTENT_DIR.mkdir(parents=True, exist_ok=True)
 
-        openai_ef = embedding_functions.OpenAIEmbeddingFunction(
-            api_key=Config.require_openai_api_key(),
-            model_name=Config.EMBEDDING_MODEL,
-        )
+        embedding_function = CustomEmbeddingFunction()
 
         self.client = chromadb.PersistentClient(path=str(Config.PERSISTENT_DIR))
         self.collection = self.client.get_or_create_collection(
             name=Config.COLLECTION_NAME,
-            embedding_function=openai_ef,
+            embedding_function=embedding_function,
         )
 
     def upsert_documents(self, documents, metadatas, ids):
