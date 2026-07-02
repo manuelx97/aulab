@@ -27,6 +27,9 @@ In questo avanzamento il progetto contiene una app Chainlit con una versione RAG
   e richiesta di informazioni sul CV gia' individuato.
 - legge formati diversi da `.txt` tramite MarkItDown, inclusi PDF, DOCX,
   PPTX, XLSX, CSV, HTML, JSON, XML e ZIP.
+- permette di caricare nuovi file direttamente dalla chat Chainlit,
+  salvandoli in `resumes` e indicizzandoli subito.
+- permette di svuotare completamente la collezione ChromaDB da interfaccia.
 
 La logica e' divisa in:
 

@@ -8,13 +8,23 @@ class Database:
     def __init__(self):
         Config.PERSISTENT_DIR.mkdir(parents=True, exist_ok=True)
 
-        embedding_function = CustomEmbeddingFunction()
-
+        self.embedding_function = CustomEmbeddingFunction()
         self.client = chromadb.PersistentClient(path=str(Config.PERSISTENT_DIR))
+        self._init_collection()
+
+    def _init_collection(self):
         self.collection = self.client.get_or_create_collection(
             name=Config.COLLECTION_NAME,
-            embedding_function=embedding_function,
+            embedding_function=self.embedding_function,
         )
+
+    def delete_collection(self):
+        try:
+            self.client.delete_collection(Config.COLLECTION_NAME)
+        except Exception:
+            pass
+
+        self._init_collection()
 
     def upsert_documents(self, documents, metadatas, ids):
         if not documents:
