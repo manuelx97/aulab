@@ -36,11 +36,7 @@ class SemanticChunking:
         return chunks
 
     def _process_sentences(self, text):
-        raw_sentences = [
-            sentence.strip()
-            for sentence in re.split(r"(?<=[.?!])\s+", text)
-            if sentence.strip()
-        ]
+        raw_sentences = self._split_into_sentences(text)
         sentences = [
             {"sentence": sentence, "index": index}
             for index, sentence in enumerate(raw_sentences)
@@ -56,6 +52,30 @@ class SemanticChunking:
             )
 
         return sentences
+
+    @staticmethod
+    def _split_into_sentences(text):
+        sentences = [
+            sentence.strip()
+            for sentence in re.split(r"(?<=[.!?])\s+", text.strip())
+            if sentence.strip()
+        ]
+
+        if len(sentences) == 1 and len(text) > 100:
+            parts = re.split(r"([.!?\n;:])", text.strip())
+            sentences = []
+            for index in range(0, len(parts) - 1, 2):
+                if parts[index].strip():
+                    sentences.append(parts[index].strip() + parts[index + 1])
+
+            if len(sentences) == 1:
+                sentences = [
+                    part.strip() + "," for part in text.split(",") if part.strip()
+                ]
+                if sentences:
+                    sentences[-1] = sentences[-1][:-1] + "."
+
+        return sentences or ([text.strip() + "."] if text.strip() else [])
 
     def _embed_sentences(self, sentences):
         return self.embedding_function(

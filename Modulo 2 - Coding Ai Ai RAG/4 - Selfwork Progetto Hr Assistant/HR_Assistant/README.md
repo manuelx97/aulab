@@ -25,6 +25,8 @@ In questo avanzamento il progetto contiene una app Chainlit con una versione RAG
   locale oppure Ollama.
 - classifica l'intento dell'utente per distinguere tra ricerca di un nuovo CV
   e richiesta di informazioni sul CV gia' individuato.
+- legge formati diversi da `.txt` tramite MarkItDown, inclusi PDF, DOCX,
+  PPTX, XLSX, CSV, HTML, JSON, XML e ZIP.
 
 La logica e' divisa in:
 
