@@ -31,7 +31,7 @@ async def set_starters():
         cl.Starter(
             label="Ricerca candidato",
             message="Cercami un candidato che abbia le competenze di un saldatore",
-            icon="/public/idea.svg",
+            icon="/public/favicon.png",
         ),
     ]
 
@@ -59,7 +59,11 @@ async def on_chat_start():
         ),
     ]
 
-    await cl.Message(content="Informazioni del sistema:", actions=actions).send()
+    await cl.Message(
+        author="system_assistant",
+        content="Informazioni del sistema:",
+        actions=actions,
+    ).send()
 
     cl.user_session.set(
         "messages",
@@ -90,18 +94,26 @@ async def on_db_stats(action: cl.Action):
             label="Ricalcola Statistiche Database",
         ),
     ]
-    await cl.Message(content=response, actions=actions).send()
+    await cl.Message(
+        author="system_assistant",
+        content=response,
+        actions=actions,
+    ).send()
 
 
 @cl.action_callback("db_reindex")
 async def on_db_reindex(action: cl.Action):
     database = get_database()
+    await cl.Message(
+        author="system_assistant",
+        content="Reindicizzazione in corso...",
+    ).send()
     added, updated, removed = DocumentProcessor.process_documents(database)
     message = (
         "DB reindicizzato con successo. "
         f"Document sync complete: {added} added, {updated} updated, {removed} removed"
     )
-    await cl.Message(content=message).send()
+    await cl.Message(author="system_assistant", content=message).send()
 
 
 @cl.action_callback("db_remove")
@@ -109,6 +121,7 @@ async def on_db_remove(action: cl.Action):
     database = get_database()
     database.delete_collection()
     await cl.Message(
+        author="system_assistant",
         content=(
             "Il database e' stato completamente rimosso. "
             "E' necessario lanciare il reindex o caricare nuovi file."
@@ -149,17 +162,26 @@ async def handle_uploads(message: cl.Message):
     ]
 
     if not supported_files:
-        await cl.Message(content="Nessun file supportato caricato.").send()
+        await cl.Message(
+            author="system_assistant",
+            content="Nessun file supportato caricato.",
+        ).send()
         return True
 
-    await cl.Message(content="Caricamento e indicizzazione documenti").send()
+    await cl.Message(
+        author="system_assistant",
+        content="Caricamento e indicizzazione documenti",
+    ).send()
 
     results = []
     for file in supported_files:
         results.append(await file_upload(file))
 
-    await cl.Message(content="\n".join(results)).send()
-    await cl.Message(content=f"Caricati {len(supported_files)} file").send()
+    await cl.Message(author="system_assistant", content="\n".join(results)).send()
+    await cl.Message(
+        author="system_assistant",
+        content=f"Caricati {len(supported_files)} file",
+    ).send()
     return True
 
 
@@ -181,6 +203,7 @@ async def handle_message(message: cl.Message):
 
             if not results or not results["documents"] or not results["documents"][0]:
                 await cl.Message(
+                    author="system_assistant",
                     content=(
                         "Nessun curriculum trovato per la richiesta. "
                         "Prova con competenze o ruolo piu' specifici."
@@ -207,6 +230,7 @@ async def handle_message(message: cl.Message):
 
             if not context:
                 await cl.Message(
+                    author="system_assistant",
                     content=(
                         "Non ho ancora un CV recente a cui fare riferimento. "
                         "Cerca prima un candidato, poi chiedimi dettagli sul suo profilo."
@@ -227,11 +251,11 @@ async def handle_message(message: cl.Message):
         cl.user_session.set("messages", messages)
 
     except Exception as error:
-        await cl.Message(content=f"Errore: {error}").send()
+        await cl.Message(author="system_assistant", content=f"Errore: {error}").send()
 
 
 async def stream_response(messages):
-    response_message = cl.Message(content="")
+    response_message = cl.Message(author="hr_assistant", content="")
     await response_message.send()
 
     stream = LLMHelper.chat(messages)
@@ -244,4 +268,7 @@ async def stream_response(messages):
 
 @cl.on_chat_end
 async def on_chat_end():
-    await cl.Message(content="Grazie per aver utilizzato HR Assistant.").send()
+    await cl.Message(
+        author="system_assistant",
+        content="Grazie per aver utilizzato HR Assistant.",
+    ).send()

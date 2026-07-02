@@ -30,6 +30,8 @@ In questo avanzamento il progetto contiene una app Chainlit con una versione RAG
 - permette di caricare nuovi file direttamente dalla chat Chainlit,
   salvandoli in `resumes` e indicizzandoli subito.
 - permette di svuotare completamente la collezione ChromaDB da interfaccia.
+- personalizza la UI Chainlit con configurazione dedicata, CSS, tema, logo,
+  favicon e avatar per i messaggi dell'assistente.
 
 La logica e' divisa in:
 
