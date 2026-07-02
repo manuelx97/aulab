@@ -12,9 +12,12 @@ def get_database():
     global db
 
     if db is None:
-        documents, metadatas, ids = DocumentProcessor.process_documents()
         db = Database()
-        db.upsert_documents(documents, metadatas, ids)
+        added, updated, removed = DocumentProcessor.process_documents(db)
+        print(
+            "Document sync complete: "
+            f"{added} added, {updated} updated, {removed} removed"
+        )
 
     return db
 

@@ -12,6 +12,8 @@ In questo avanzamento il progetto contiene una app Chainlit con una versione RAG
 - cerca il chunk piu' vicino alla richiesta dell'utente;
 - usa Ollama per estrarre il nome del candidato;
 - usa Ollama in streaming per generare la risposta HR.
+- sincronizza i curriculum con ChromaDB usando hash dei file, aggiungendo,
+  aggiornando o rimuovendo solo i documenti necessari.
 
 La logica e' divisa in:
 
