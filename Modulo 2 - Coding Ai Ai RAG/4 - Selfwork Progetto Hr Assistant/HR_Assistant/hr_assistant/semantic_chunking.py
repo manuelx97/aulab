@@ -21,7 +21,9 @@ class SemanticChunking:
         distances = self._calculate_distances(embeddings)
 
         threshold = self._percentile(distances, self.breakpoint_percentile)
-        split_points = [index for index, distance in enumerate(distances) if distance > threshold]
+        split_points = [
+            index for index, distance in enumerate(distances) if distance > threshold
+        ]
 
         chunks = []
         start = 0

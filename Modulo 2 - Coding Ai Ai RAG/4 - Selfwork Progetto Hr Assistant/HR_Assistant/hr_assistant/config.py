@@ -12,6 +12,8 @@ class Config:
 
     EMBEDDING_MODEL = "text-embedding-3-small"
     CHUNKING_VERSION = "semantic-v1"
+    SEMANTIC_BREAKPOINT_PERCENTILE = 95
+    SEMANTIC_BUFFER_SIZE = 1
     OLLAMA_MODEL = "llama3.2"
 
     load_dotenv(BASE_DIR / ".env")

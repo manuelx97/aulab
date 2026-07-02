@@ -32,7 +32,11 @@ class DocumentProcessor:
         metadata = DocumentProcessor.get_document_metadata(file_path)
 
         text = file_path.read_text(encoding="utf-8")
-        chunks = SemanticChunking().chunk_text(text)
+        semantic_chunking = SemanticChunking(
+            breakpoint_percentile=Config.SEMANTIC_BREAKPOINT_PERCENTILE,
+            buffer_size=Config.SEMANTIC_BUFFER_SIZE,
+        )
+        chunks = semantic_chunking.chunk_text(text)
 
         for index, chunk in enumerate(chunks):
             documents.append(chunk)
