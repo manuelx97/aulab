@@ -1,0 +1,90 @@
+{
+  "custom_fonts": [],
+  "variables": {
+    "light": {
+      "--font-sans": "'Inter', sans-serif",
+      "--font-mono": "source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace",
+
+      "--background": "0 0% 100%",
+      "--foreground": "222 20% 10%",
+
+      "--card": "0 0% 100%",
+      "--card-foreground": "222 20% 10%",
+
+      "--popover": "0 0% 100%",
+      "--popover-foreground": "222 20% 10%",
+
+      "--primary": "215 95% 55%",
+      "--primary-foreground": "0 0% 100%",
+      "--ring": "215 95% 55%",
+
+      "--secondary": "210 40% 96%",
+      "--secondary-foreground": "222 30% 15%",
+
+      "--muted": "210 20% 94%",
+      "--muted-foreground": "220 10% 45%",
+
+      "--accent": "215 100% 96%",
+      "--accent-foreground": "215 80% 30%",
+
+      "--destructive": "0 72% 55%",
+      "--destructive-foreground": "0 0% 100%",
+
+      "--border": "210 20% 88%",
+      "--input": "210 20% 88%",
+
+      "--radius": "0.75rem",
+
+      "--sidebar-background": "210 40% 98%",
+      "--sidebar-foreground": "222 20% 20%",
+      "--sidebar-primary": "215 95% 55%",
+      "--sidebar-primary-foreground": "0 0% 100%",
+      "--sidebar-accent": "215 60% 94%",
+      "--sidebar-accent-foreground": "215 70% 25%",
+      "--sidebar-border": "210 20% 90%",
+      "--sidebar-ring": "215 95% 55%"
+    },
+
+    "dark": {
+      "--font-sans": "'Inter', sans-serif",
+      "--font-mono": "source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace",
+
+      "--background": "220 45% 8%",
+      "--foreground": "210 20% 92%",
+
+      "--card": "220 35% 12%",
+      "--card-foreground": "210 20% 92%",
+
+      "--popover": "220 35% 12%",
+      "--popover-foreground": "210 20% 92%",
+
+      "--primary": "215 95% 60%",
+      "--primary-foreground": "0 0% 100%",
+      "--ring": "215 95% 60%",
+
+      "--secondary": "220 25% 16%",
+      "--secondary-foreground": "210 20% 92%",
+
+      "--muted": "220 20% 18%",
+      "--muted-foreground": "220 10% 65%",
+
+      "--accent": "215 30% 20%",
+      "--accent-foreground": "210 20% 92%",
+
+      "--destructive": "0 65% 45%",
+      "--destructive-foreground": "0 0% 100%",
+
+      "--border": "220 20% 20%",
+      "--input": "220 20% 20%",
+
+      "--sidebar-background": "220 45% 6%",
+      "--sidebar-foreground": "210 20% 92%",
+      "--sidebar-primary": "215 95% 60%",
+      "--sidebar-primary-foreground": "0 0% 100%",
+      "--sidebar-accent": "220 30% 14%",
+      "--sidebar-accent-foreground": "210 20% 92%",
+      "--sidebar-border": "220 25% 14%",
+      "--sidebar-ring": "215 95% 60%"
+    }
+  }
+}

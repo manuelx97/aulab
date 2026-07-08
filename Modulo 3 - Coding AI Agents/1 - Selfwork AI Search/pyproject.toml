@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "info-segugio"
+version = "0.1.0"
+description = ""
+authors = ["Emanuel Marinelli <emanuelmarinelli@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.14.0"
+chainlit = "^2.11.1"
+openai = "^2.38.0"
+tavily-python = "^0.7.24"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
