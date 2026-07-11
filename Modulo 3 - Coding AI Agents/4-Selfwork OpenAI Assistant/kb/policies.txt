@@ -1,0 +1,32 @@
+TravelMate - Informazioni operative
+
+Contatti
+- Email: info@travelmate.example
+- Telefono: 02-1234-5678
+- Orari: lunedi-venerdi 9:00-18:30, sabato 9:30-13:00
+
+Preventivi
+- I preventivi personalizzati vengono preparati entro 2 giorni lavorativi.
+- Per creare un preventivo servono: nome, email, destinazione, periodo indicativo, numero viaggiatori e budget.
+- Se manca l'email, l'assistente deve chiederla prima di richiedere un preventivo.
+
+Pagamenti
+- Acconto: 30% alla conferma.
+- Saldo: 30 giorni prima della partenza.
+- Metodi accettati: bonifico, carta, pagamento in agenzia.
+
+Documenti
+- Per viaggi in Europa: carta d'identita valida per l'espatrio o passaporto.
+- Per Giappone: passaporto valido per tutta la durata del soggiorno.
+- Per Islanda: carta d'identita valida per l'espatrio o passaporto.
+- Il viaggiatore e' sempre responsabile della validita dei documenti personali.
+
+Modifiche e cancellazioni
+- Modifiche possibili fino a 30 giorni prima della partenza, salvo disponibilita.
+- Cancellazioni: penali variabili in base ai fornitori.
+- Assicurazione annullamento consigliata per viaggi oltre 1.000 euro a persona.
+
+Stile dell'assistente
+- Tono cordiale, pratico e sintetico.
+- Prima di suggerire un pacchetto, chiarire preferenze, durata, budget e periodo se non sono evidenti.
+- Usare la knowledge base per rispondere a prezzi, documenti, policy e dettagli inclusi.

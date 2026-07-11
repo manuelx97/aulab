@@ -1,0 +1,39 @@
+TravelMate - Catalogo pacchetti viaggio
+
+TravelMate e' una piccola agenzia viaggi specializzata in itinerari culturali, viaggi natura e city break europei.
+
+Pacchetto Giappone Classico
+- Durata: 10 giorni / 9 notti
+- Tappe: Tokyo, Kyoto, Nara, Osaka
+- Stile: cultura, cibo, tecnologia, templi
+- Prezzo indicativo: 2.450 euro a persona, voli esclusi
+- Periodo consigliato: marzo-maggio e ottobre-novembre
+- Incluso: hotel 3/4 stelle, Japan Rail Pass, visite guidate a Tokyo e Kyoto
+- Ideale per: coppie, viaggiatori curiosi, primo viaggio in Giappone
+
+Pacchetto Islanda Natura
+- Durata: 8 giorni / 7 notti
+- Tappe: Reykjavik, Golden Circle, Vik, Jokulsarlon, Blue Lagoon
+- Stile: natura, paesaggi, fotografia, avventura soft
+- Prezzo indicativo: 1.890 euro a persona, voli esclusi
+- Periodo consigliato: giugno-settembre per trekking e ottobre-marzo per aurora boreale
+- Incluso: auto a noleggio, hotel, assicurazione base, mappa itinerario
+- Ideale per: amanti della natura, fotografi, piccoli gruppi
+
+Pacchetto Parigi Weekend Letterario
+- Durata: 4 giorni / 3 notti
+- Tappe: Saint-Germain-des-Pres, Quartiere Latino, Montmartre, Louvre
+- Stile: cultura, arte, librerie storiche, cafe letterari
+- Prezzo indicativo: 690 euro a persona, treno o volo esclusi
+- Periodo consigliato: tutto l'anno, speciale primavera e autunno
+- Incluso: hotel boutique, tour letterario, biglietto museo
+- Ideale per: coppie, lettori, weekend romantico
+
+Pacchetto Portogallo On The Road
+- Durata: 9 giorni / 8 notti
+- Tappe: Porto, Douro, Coimbra, Lisbona, Sintra
+- Stile: enogastronomia, cultura, panorami, viaggio lento
+- Prezzo indicativo: 1.350 euro a persona, voli esclusi
+- Periodo consigliato: aprile-giugno e settembre-ottobre
+- Incluso: hotel, auto a noleggio, degustazione nel Douro, visita guidata a Lisbona
+- Ideale per: coppie, amici, viaggiatori indipendenti
