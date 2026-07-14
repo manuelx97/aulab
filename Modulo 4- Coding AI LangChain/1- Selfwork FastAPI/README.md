@@ -6,19 +6,18 @@ GitHub: manuelx97
 
 ## Descrizione
 
-Questo esercizio del Modulo 4 contiene una piccola API realizzata con FastAPI. Il tema scelto e' una libreria: gli endpoint permettono di leggere, filtrare, creare, aggiornare ed eliminare libri.
+Questo selfwork replica l'esercizio FastAPI visto nella lezione. Il progetto mostra gli esempi principali per creare una API con:
 
-L'obiettivo del selfwork e' mostrare i concetti principali visti nella lezione:
-
-* creazione di una app FastAPI;
 * path parameters;
+* enum nei path parameters;
+* path converter per percorsi file;
 * query parameters;
-* enum;
-* validazioni con Pydantic;
-* request body;
-* response model;
-* gestione degli errori con `HTTPException`;
-* documentazione automatica tramite Swagger UI.
+* request body con Pydantic;
+* validazioni con `Field`;
+* uso di `Annotated` e `Query`;
+* documentazione automatica tramite `/docs`.
+
+Ho mantenuto la struttura dell'esercizio originale, aggiungendo solo una documentazione piu' completa, i miei metadati e una piccola variazione sul path dell'esempio con query parameters (`/items/query/{item_id}`) per evitare sovrapposizioni con l'endpoint `/items/{item_id}`.
 
 ## Installazione
 
@@ -34,73 +33,64 @@ pip install -r requirements.txt
 uvicorn src.fastapi_ex.main:app --reload
 ```
 
-In alternativa:
+In alternativa, usando Poetry:
 
 ```bash
-python -m uvicorn src.fastapi_ex.main:app --reload
+poetry run uvicorn src.fastapi_ex.main:app --reload
 ```
 
-## Documentazione API
+## Documentazione
 
-Dopo l'avvio, aprire:
+Dopo l'avvio, la documentazione interattiva e' disponibile qui:
 
 ```text
 http://127.0.0.1:8000/docs
 ```
 
-## Endpoint principali
+## Endpoint presenti
 
 ```text
-GET     /
-GET     /health
-GET     /genres/{genre}
-GET     /files/{file_path:path}
-GET     /books
-GET     /books/{book_id}
-GET     /authors/{author_id}/books/{book_id}
-POST    /books
-PUT     /books/{book_id}
-PATCH   /books/{book_id}
-DELETE  /books/{book_id}
+GET  /
+GET  /items/{item_id}
+GET  /models/{model_name}
+GET  /files/{file_path:path}
+GET  /items/
+GET  /items/query/{item_id}
+POST /items/
+PUT  /items/{item_id}
+GET  /items/get
 ```
 
-## Esempi
+## Esempi rapidi
 
-Lista libri con filtri:
+Path parameter:
 
 ```text
-GET /books?genre=tech&in_stock=true&limit=5&offset=0
+GET /items/10
 ```
 
-Dettaglio libro:
+Enum nel path:
 
 ```text
-GET /books/1
+GET /models/alexnet
+GET /models/resnet
+GET /models/lenet
 ```
 
-Creazione libro:
+Query parameters:
+
+```text
+GET /items/?skip=0&limit=2
+GET /items/query/test?q=ciao&short=true
+```
+
+Body Pydantic:
 
 ```json
 {
-  "title": "Designing Data-Intensive Applications",
-  "author": "Martin Kleppmann",
-  "genre": "tech",
-  "price": 42.5,
-  "pages": 616,
-  "in_stock": true,
-  "description": "Libro tecnico su sistemi distribuiti e architetture dati."
+  "name": "Notebook",
+  "description": "Quaderno per appunti",
+  "price": 12.5,
+  "tax": 2.5
 }
 ```
-
-Aggiornamento parziale:
-
-```json
-{
-  "price": 39.9,
-  "in_stock": false
-}
-```
-
-## Note
-
-Il database e' simulato con una lista Python in memoria. Questo mantiene il progetto semplice e focalizzato sui concetti FastAPI richiesti dall'esercizio.
